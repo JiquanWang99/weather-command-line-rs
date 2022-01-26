@@ -7,7 +7,7 @@ version = "0.1.0"
 
 [dependencies]
 chrono = "0.4.19" # 时间格式化工具
-colorful = "0.2.1" # 控制台上色
+colored = "2.0.0" # 控制台上色
 exitfailure = "0.5.1" 
 reqwest = {version = "0.11", features = ["json"]} 
 serde = "1.0.114" 
