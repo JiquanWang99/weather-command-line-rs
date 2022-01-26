@@ -1,5 +1,5 @@
 mod module;
-use module::util::{print_response, Input, Weather};
+use module::core::{print_response, Input, Weather};
 
 use colored::*;
 use exitfailure::ExitFailure;
