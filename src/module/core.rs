@@ -51,25 +51,38 @@ impl Weather {
     }
 }
 
-pub fn formate_timestamp(timestamp: i32) -> String {
+pub fn formate_timestamp(timestamp: i32, format: &str) -> String {
     // Creates a new SystemTime from the specified number of whole seconds
     let time = UNIX_EPOCH + Duration::from_secs(timestamp as u64);
     // Create DateTime from SystemTime
     let datetime = DateTime::<Local>::from(time);
-    datetime.format("%H:%M:%S").to_string()
+    datetime.format(format).to_string()
 }
 
 pub fn print_response(resp: &Weather) {
     println!(
-        "  当前温度：{}℃ \n  今日最低温：{}℃ \n  今日最高温：{}℃ \n  体感温度：{}℃ \n  湿度：{}% \n  日出时间：{} \n  日落时间：{} \n  当前经度：{} \n  当前纬度：{}",
+        "  当前温度：{}℃ \n  今日最低温：{}℃ \n  今日最高温：{}℃ \n  体感温度：{}℃ \n  湿度：{}% \n  日出时间：{} \n  日落时间：{} \n  所在经度：{} \n  所在纬度：{}",
         resp.main.temp.to_string().bright_red(),
         resp.main.temp_min,
         resp.main.temp_max,
         resp.main.feels_like,
         resp.main.humidity,
-        formate_timestamp(resp.sys.sunrise),
-        formate_timestamp(resp.sys.sunset),
+        formate_timestamp(resp.sys.sunrise, "%H:%M:%S"),
+        formate_timestamp(resp.sys.sunset, "%H:%M:%S"),
         resp.coord.lon,
         resp.coord.lat
     );
+}
+
+#[test]
+fn test_timestamp_to_time() {
+    assert_eq!(
+        formate_timestamp(1643467428, "%H:%M:%S"),
+        "22:43:48".to_string()
+    );
+
+    assert_eq!(
+        formate_timestamp(1643467428, "%Y-%m-%d %H:%M:%S"),
+        "2022-01-29 22:43:48".to_string()
+    )
 }
