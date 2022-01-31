@@ -42,6 +42,7 @@ pub struct Weather {
 
 impl Weather {
     pub async fn get(city: &String) -> Result<Self, ExitFailure> {
+        println!("{}", "-----正在获取天气信息, 请稍后...-----".bright_green());
         let url = format!("http://api.openweathermap.org/data/2.5/weather?q={}&APPID=c6c7ff2ebd36ff0ba4bbb220e1c4b948&units=metric
       ", city);
         let url = Url::parse(url.as_str())?;
