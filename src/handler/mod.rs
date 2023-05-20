@@ -53,9 +53,7 @@ impl Weather {
 }
 
 pub fn formate_timestamp(timestamp: i32, format: &str) -> String {
-    // Creates a new SystemTime from the specified number of whole seconds
     let time = UNIX_EPOCH + Duration::from_secs(timestamp as u64);
-    // Create DateTime from SystemTime
     let datetime = DateTime::<Local>::from(time);
     datetime.format(format).to_string()
 }

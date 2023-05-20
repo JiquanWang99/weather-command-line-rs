@@ -1,5 +1,5 @@
-mod module;
-use module::core::{print_response, Input, Weather};
+mod handler;
+use handler::{print_response, Input, Weather};
 
 use exitfailure::ExitFailure;
 use structopt::StructOpt;
